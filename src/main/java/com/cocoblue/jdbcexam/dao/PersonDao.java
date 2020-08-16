@@ -8,14 +8,14 @@ import java.util.List;
 
 public class PersonDao {
     // 클래스 전반에서 사용할 DB 기본 정보 정의
-    private static String dbUrl = "jdbc:mysql://(DB 주소)/(DB 명)";
-    private static String dbUser = "DB 계정";
-    private static String dbPasswd = "DB 계정 비밀번호";
+    private static final String dbUrl = "jdbc:mysql://(DB 주소)/(DB 명)";
+    private static final String dbUser = "DB 계정";
+    private static final String dbPasswd = "DB 계정 비밀번호";
 
     // 지정한 검색어의 데이터를 갖고와 리턴해주는 코드
     public List<Person> searchPerson(String keyword) {
         // 검색 결과를 담을 리스트
-        List<Person> people = new ArrayList<Person>();
+        List<Person> people = new ArrayList<>();
         // DB Connection
         Connection conn = null;
         // 쿼리를 실행할 객체
@@ -113,7 +113,7 @@ public class PersonDao {
     } // addPerson END
 
     // 생성되었던 SQL 관련 객체들을 닫는 함수
-    private Boolean closeAll(PreparedStatement ps, ResultSet rs, Connection conn) {
+    private void closeAll(PreparedStatement ps, ResultSet rs, Connection conn) {
         // rs가 null이 아닐 때
         if(rs != null) {
             try {
@@ -121,7 +121,6 @@ public class PersonDao {
                 rs.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             } // try, catch END
         } // if END
 
@@ -132,7 +131,6 @@ public class PersonDao {
                 ps.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             } // try, catch END
         } // if END
 
@@ -143,11 +141,7 @@ public class PersonDao {
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
             } // try, catch END
         } // if END
-
-        // 정상적으로 완료되었으니 true 전달
-        return true;
     }
 }
