@@ -147,7 +147,7 @@ public class PersonDao {
             } // try, catch END
         } // if END
 
-        // 정상적으로 완료되었으니 true 출력
+        // 정상적으로 완료되었으니 true 전달
         return true;
     }
 }
