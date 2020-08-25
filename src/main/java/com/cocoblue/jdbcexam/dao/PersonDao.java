@@ -27,6 +27,8 @@ public class PersonDao {
 
                     people.add(new Person(name, age, job, phone));
                 }
+            } catch(Exception e) {
+                e.printStackTrace();
             }
         } catch(Exception e) {
             e.printStackTrace();
